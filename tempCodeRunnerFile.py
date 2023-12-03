@@ -1,1 +1,0 @@
- self.frame.pack(padx=10,pady=10)
