@@ -1,5 +1,5 @@
 """
-Project Created By: Bhat Adnan
+Project Created By: Adnan Fareed
 Dated: 25/11/2023
 Project Contents: GUI Tic-tac-toe game using tkinter in python 
 """
