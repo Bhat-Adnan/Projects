@@ -1,3 +1,10 @@
+"""
+Project Start Date: 26/12/2023
+Contributors: Adnan Fareed, Jasspreet Singh, Kamran Jeelani
+Purpose: Result prediction of students using machine learning
+"""
+
+
 import PIL.Image
 import pandas as pd
 from PIL import Image,ImageFile
@@ -6,14 +13,13 @@ from tkinter import *
 from tkinter import messagebox
 
 from tkinter.font import Font
-from tkinter.simpledialog import askstring
 from matplotlib import pyplot as plt
-from tkinter import filedialog,ttk,Canvas
-from tkinter.filedialog import askopenfile
 from sklearn.ensemble import RandomForestRegressor 
 from sklearn.model_selection import train_test_split 
 from matplotlib.animation import FuncAnimation
 from PIL import ImageTk, Image
+
+
 
 if __name__=='__main__':
     global flag_csv
@@ -179,8 +185,6 @@ def sem():
     plt.ylim(0,10)
     plt.ylabel('SGPA')
     plt.tight_layout()
-    plt.savefig('prediction1.jpg')
-    os.chmod('prediction1.jpg', 0o777)
     #plt.show()
     
 
@@ -202,7 +206,6 @@ def sem2():
     str_accuracy=str(regressor_2.score(X_test_2,y_test_2)*100)
     print("Sem 2")
     print("Prediction: "+ str(predict_2)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_2)
    
     sem3()
@@ -214,7 +217,6 @@ def sem3():
     str_accuracy=str(regressor_3.score(X_test_3,y_test_3)*100)
     print("Sem 3")
     print("Prediction: "+ str(predict_3)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_3)
 
     sem4()
@@ -225,7 +227,6 @@ def sem4():
     str_accuracy=str(regressor_4.score(X_test_4,y_test_4)*100)
     print("Sem 4")
     print("Prediction: "+ str(predict_4)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_4)
 
     sem5()
@@ -236,7 +237,6 @@ def sem5():
     str_accuracy=str(regressor_5.score(X_test_5,y_test_5)*100)
     print("Sem 5")
     print("Prediction: "+ str(predict_5)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_5)
 
 
@@ -248,7 +248,6 @@ def sem6():
     str_accuracy=str(regressor_6.score(X_test_6,y_test_6)*100)
     print("Sem 6")
     print("Prediction: "+ str(predict_6)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_6)
     
     sem7()
@@ -259,7 +258,6 @@ def sem7():
     str_accuracy=str(regressor_7.score(X_test_7,y_test_7)*100)
     print('Sem 7')
     print("Prediction: "+ str(predict_7)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_7)
     
     sem8()
@@ -274,18 +272,15 @@ def sem8():
     str_accuracy=str(regressor_8.score(X_test_8,y_test_8)*100)
     print('Sem 8')
     print("Prediction: "+ str(predict_8)+" SGPA")
-    print("Prediction Accuracy Rate: "+str_accuracy[:5]+"%")
     ls_sgpa.append(predict_8)
     #print(sgpa_curr)
     if flag_rno==1:
         #print(strrno[6:8])
         rno=strrno[6:8]
         df=df_pre.copy()
-        df_rno=df[df['rno'].str.contains('0808CS'+rno)|df['rno'].str.contains('0808CO'+rno)|df['rno'].str.contains('0808CI'+rno)|df['rno'].str.contains('0808CT'+rno)]
-        lsavg=df_rno[['1','2','3','4','5','6','7','8']].mean(axis=0)
         plt.close()
         plt.cla()
-        plt.plot(sem,lsavg[:len(sgpa_curr)] ,marker='.',c='green',lw=2.5,label='Batch Avg')
+        plt.plot(sem,marker='.',c='green',lw=2.5,label='Batch Avg')
     else:
         plt.close()
         plt.cla()
@@ -296,7 +291,6 @@ def sem8():
     plt.ylabel('SGPA')
     plt.tight_layout()
     plt.savefig('prediction1.jpg')
-    os.chmod('prediction1.jpg', 0o777)
     #plt.show()
     
 
@@ -315,7 +309,7 @@ def sem8():
 root=tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
-root.title("KASHMIR UNIVERSITY EXAM RESULT ANALYSIS")     
+root.title("NORTH CAMPUS,UNIVERSITY OF KASHMIR STUDENT RESULT PREDICTION")     
 
 tab_parent = ttk.Notebook(root)
 tab1 = ttk.Frame(tab_parent)
@@ -345,7 +339,7 @@ num_sem.pack(anchor = CENTER )
 label4=tk.LabelFrame(tab1,text="Choose File (for Enrollment No.)")
 label4.config(font=("Times New Roman", 26))
 label4.pack(fill="both")
-button = tk.Button(label4,text ="Open", command = choose)
+button = tk.Button(label4,text ="Open")
 button.config(font=("Times New Roman", 18))
 button.pack(anchor = CENTER )
 
@@ -391,65 +385,6 @@ labels8 = tk.Label(tab2, text="Sem 8:")
 texts8=tk.Entry(tab2)
 button_generate = tk.Button(tab2,text ="Generate")
 button_generate.config(font=("Times New Roman", 26))
-def clear_text():
-    rno.delete(0,'end')
-    texts1.delete(0, 'end')
-    texts2.delete(0, 'end')
-    texts3.delete(0, 'end')
-    texts4.delete(0, 'end')
-    texts5.delete(0, 'end')
-    texts6.delete(0, 'end')
-    texts7.delete(0, 'end')
-    texts8.delete(0, 'end')
-    prediction_fig.destroy()
-    rno.focus()
-clear_button = tk.Button(tab2,text="Clear")
-clear_button.config(font=("Times New Roman", 26))
-
-
-
-labels1.config(font=("Times New Roman", 20))
-texts1.config(font=("Times New Roman", 20))
-labels2.config(font=("Times New Roman", 20))
-texts2.config(font=("Times New Roman", 20))
-labels3.config(font=("Times New Roman", 20))
-texts3.config(font=("Times New Roman", 20))
-labels4.config(font=("Times New Roman", 20))
-texts4.config(font=("Times New Roman", 20))
-labels5.config(font=("Times New Roman", 20))
-texts5.config(font=("Times New Roman", 20))
-labels6.config(font=("Times New Roman", 20))
-texts6.config(font=("Times New Roman", 20))
-labels7.config(font=("Times New Roman", 20))
-texts7.config(font=("Times New Roman", 20))
-labels8.config(font=("Times New Roman", 20))
-texts8.config(font=("Times New Roman", 20))
-
-
-
-label_rno.grid(row=0,column=0,pady=10,padx=30)
-rno.grid(row=0,column=1)
-labelor.grid(row=1,column=0,pady=5,columnspan=2)
-label_sem.grid(row=2,column=0,padx=25)
-labels1.grid(row=3, column=0)
-labels2.grid(row=4, column=0)
-labels3.grid(row=5, column=0)
-labels4.grid(row=6, column=0)
-labels5.grid(row=7, column=0)
-labels6.grid(row=8, column=0)
-labels7.grid(row=9, column=0)
-labels8.grid(row=10, column=0)
-texts1.grid(row=3,column=1)
-texts2.grid(row=4,column=1)
-texts3.grid(row=5,column=1)
-texts4.grid(row=6,column=1)
-texts5.grid(row=7,column=1)
-texts6.grid(row=8,column=1)
-texts7.grid(row=9,column=1)
-texts8.grid(row=10,column=1)
-clear_button.grid(row=12,column=0,pady=15)
-button_generate.grid(row=12,column=1,columnspan=2,pady=15)
-
-
 tab_parent.pack(expand=1,fill="both")
+
 root.mainloop()
